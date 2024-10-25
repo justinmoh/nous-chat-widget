@@ -123,7 +123,7 @@ const props = defineProps({
   },
   asrLanguage: {
     type: String,
-    default: "en",
+    default: "none",
   },
   minimumSilentSecond: {
     type: Number,

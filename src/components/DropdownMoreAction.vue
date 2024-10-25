@@ -27,7 +27,7 @@
 
   <!-- action dropdown -->
   <div
-    class="ns-absolute ns-top-14 ns-right-0 ns-bg-white ns-rounded-lg ns-shadow-lg ns-z-20"
+    class="ns-absolute ns-top-14 ns-right-0 ns-bg-white ns-rounded-lg ns-shadow-lg ns-z-20 ns-border"
     v-if="isActionDropdownOpen"
     ref="dropdown"
   >

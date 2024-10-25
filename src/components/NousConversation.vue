@@ -67,9 +67,7 @@
         {{ props.title }}
       </h1>
 
-      <DropdownMoreAction
-        @start-new-session="handleStartNewSession"
-      ></DropdownMoreAction>
+      <DropdownMoreAction @start-new-session="handleStartNewSession"></DropdownMoreAction>
     </div>
 
     <!-- body -->
@@ -92,10 +90,7 @@
               fill="none"
               viewBox="0 0 24 24"
             >
-              <g
-                id="logo-86__logo-86"
-                clip-path="url(#logo-86__clip0_1212_3644)"
-              >
+              <g id="logo-86__logo-86" clip-path="url(#logo-86__clip0_1212_3644)">
                 <path
                   id="logo-86__Vector"
                   fill="#007DFC"
@@ -134,10 +129,7 @@
           </div>
         </div>
 
-        <div
-          v-else-if="message.type === 'error'"
-          class="ns-flex ns-items-end ns-mb-4"
-        >
+        <div v-else-if="message.type === 'error'" class="ns-flex ns-items-end ns-mb-4">
           <!-- avatar -->
           <!-- message content -->
           <div class="ns-flex ns-flex-col">
@@ -188,8 +180,8 @@
     ></div>
 
     <!-- input area -->
-    <div class="ns-relative ns-grid ns-grid-cols-6">
-      <div class="ns-col-span-5 ns-h-[48px]">
+    <div class="ns-relative ns-grid ns-grid-cols-10">
+      <div class="ns-col-span-8 ns-h-[48px]">
         <div v-if="isText" key="textbox" class="ns-pl-4">
           <div
             class="ns-flex ns-items-center ns-border ns-border-gray-200 ns-bg-gray-50 ns-rounded-full ns-px-4 ns-h-12"
@@ -237,18 +229,14 @@
           </div>
         </div>
         <div v-else key="audio" class="ns-pl-4">
-          <div
-            id="waveform"
-            ref="waveformContainer"
-            class="ns-w-full ns-h-[32px]"
-          ></div>
+          <div id="waveform" ref="waveformContainer" class="ns-w-full ns-h-[32px]"></div>
           <select class="ns-invisible" id="mic-select">
             <option value="" hidden>Select mic</option>
           </select>
         </div>
       </div>
-      <div>
-        <button class="ns-pl-4 ns-pt-3.5" @click="stream">
+      <div class="ns-flex">
+        <button class="ns-pl-2" @click="stream">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -270,6 +258,105 @@
             <path d="M12 17l0 4"></path>
           </svg>
         </button>
+        <button class="ns-pl-2" @click.stop="toggleActionDropdown" ref="toggleButton">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#6B7280"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-language"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 5h7" />
+            <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+            <path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
+            <path d="M12 20l4 -9l4 9" />
+            <path d="M19.1 18h-6.2" />
+          </svg>
+        </button>
+        <div
+          class="ns-absolute ns-top-[-110px] ns-bg-white ns-rounded-lg ns-shadow-lg ns-z-20 ns-border ns-right-0 ns-w-[110px] ns-mr-2"
+          v-if="isActionDropdownOpen"
+          ref="dropdown"
+        >
+          <button
+            class="ns-p-2 ns-w-full ns-text-left ns-text-sm ns-font-medium"
+            @click.prevent="chooseLanguage('none')"
+          >
+            <div class="ns-flex ns-justify-between">
+              <span> Auto </span>
+              <svg
+                v-if="asrLanguage === 'none'"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-check"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l5 5l10 -10" />
+              </svg>
+            </div>
+          </button>
+          <button
+            class="ns-p-2 ns-w-full ns-text-left ns-text-sm ns-font-medium"
+            @click.prevent="chooseLanguage('ms')"
+          >
+            <div class="ns-flex ns-justify-between">
+              <span> Malay </span>
+              <svg
+                v-if="asrLanguage === 'ms'"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-check"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l5 5l10 -10" />
+              </svg>
+            </div>
+          </button>
+          <button
+            class="ns-p-2 ns-w-full ns-text-left ns-text-sm ns-font-medium"
+            @click.prevent="chooseLanguage('en')"
+          >
+            <div class="ns-flex ns-justify-between">
+              <span> English </span>
+              <svg
+                v-if="asrLanguage === 'en'"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-check"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l5 5l10 -10" />
+              </svg>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -292,6 +379,7 @@ import RecordPlugin from "wavesurfer.js/dist/plugins/record.esm.js";
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
 const props = inject("nousChatProps");
+const asrLanguage = ref(props.asrLanguage);
 
 const chatContainer = ref(null);
 const isAtTop = ref(true);
@@ -320,7 +408,34 @@ const interrupted = ref(false);
 const streaming = ref(false);
 let scrollingWaveform = false;
 
+const toggleButton = ref(null);
+const dropdown = ref(null);
+const isActionDropdownOpen = ref(false);
+const toggleActionDropdown = () => {
+  isActionDropdownOpen.value = !isActionDropdownOpen.value;
+};
+
+const handleClickOutside = (event) => {
+  if (
+    isActionDropdownOpen.value &&
+    !toggleButton.value.contains(event.target) &&
+    !dropdown.value.contains(event.target)
+  ) {
+    isActionDropdownOpen.value = false;
+  }
+};
+
+const startNewSession = () => {
+  emit("startNewSession");
+  isActionDropdownOpen.value = false;
+};
+
+const chooseLanguage = (lang) => {
+  asrLanguage.value = lang;
+};
+
 onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
   scrollToBottom();
   chatContainer.value?.addEventListener("scroll", handleScroll);
 
@@ -374,8 +489,8 @@ watch(
   { deep: true }
 );
 
-// Clean up event listener
 onUnmounted(() => {
+  document.removeEventListener("click", handleClickOutside);
   chatContainer.value?.removeEventListener("scroll", handleScroll);
 });
 
@@ -496,10 +611,7 @@ const sendMessageToServerStream = async (message, isInitial) => {
   } catch (error) {
     addMessage("error", `Error sending message: ${error}`);
   } finally {
-    localStorage.setItem(
-      chatHistorySessionId.value,
-      JSON.stringify(messages.value)
-    );
+    localStorage.setItem(chatHistorySessionId.value, JSON.stringify(messages.value));
     streaming.value = false;
     interrupted.value = false;
     firsttime_bot.value = true;
@@ -513,10 +625,7 @@ const addMessage = (type, text, timestamp) => {
   }
   messages.value.push({ type, text, timestamp });
 
-  localStorage.setItem(
-    chatHistorySessionId.value,
-    JSON.stringify(messages.value)
-  );
+  localStorage.setItem(chatHistorySessionId.value, JSON.stringify(messages.value));
   scrollToBottom();
 };
 
@@ -534,11 +643,9 @@ const destroyWebSocket = () => {
 };
 
 const createWebSocket = () => {
-  const uri = props.webhookUrl
-    .replace("http://", "ws://")
-    .replace("https://", "wss://");
+  const uri = props.webhookUrl.replace("http://", "ws://").replace("https://", "wss://");
   ws.value = new WebSocket(
-    `${uri}/ws/${userSessionId.value}?language=${props.asrLanguage}&minimum_trigger_vad_ms=${props.asrChunk}`
+    `${uri}/ws/${userSessionId.value}?language=${asrLanguage.value}&minimum_trigger_vad_ms=${props.asrChunk}`
   );
   ws.value.onmessage = async function (event) {
     if (event.data == "<|silent|>") {
@@ -556,18 +663,14 @@ const createWebSocket = () => {
     }
 
     if (
-      (props.asrChunk / 1000) * silentcount.value >=
-        props.minimumSilentSecond &&
+      (props.asrChunk / 1000) * silentcount.value >= props.minimumSilentSecond &&
       !firsttime_user.value
     ) {
       interrupted.value = false;
       firsttime_user.value = !firsttime_user.value;
       silentcount.value = 0;
       //recordAudio.value.pauseRecording();
-      localStorage.setItem(
-        chatHistorySessionId.value,
-        JSON.stringify(messages.value)
-      );
+      localStorage.setItem(chatHistorySessionId.value, JSON.stringify(messages.value));
       await sendMessageToServerStream(
         messages.value[messages.value.length - 1].text,
         true
