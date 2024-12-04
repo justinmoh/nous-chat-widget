@@ -129,6 +129,10 @@ const props = defineProps({
     type: Number,
     default: 1.5,
   },
+  branding: {
+    type: String,
+    default: "Powered by Nous",
+  },
 });
 
 // Provide all props to child components

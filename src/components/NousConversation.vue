@@ -362,7 +362,7 @@
 
     <!-- branding -->
     <div class="ns-p-4 ns-text-gray-400 ns-text-sm ns-text-center ns-w-full">
-      <p>Powered by <a href="https://nous.my">Nous</a></p>
+      <p>{{ props.branding }}</p>
     </div>
   </div>
 </template>
