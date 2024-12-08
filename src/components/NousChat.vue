@@ -5,7 +5,7 @@
       class="ns-fixed ns-bottom-5 ns-right-5 ns-w-12 ns-h-12 ns-flex ns-items-center ns-justify-center ns-rounded-full ns-shadow-lg ns-transition-all hover:ns-scale-110"
       role="button"
       @click="toggleChat"
-      :style="{ backgroundColor: 'var(--nous-chat-color)' }"
+      :style="{ backgroundColor: 'var(--nous-chat-color)', zIndex: 'var(--nous-chat-z-index)' }"
     >
       <!-- open icon -->
       <svg
@@ -58,7 +58,7 @@
         :style="{
           height: 'var(--nous-chat-height)',
           width: 'var(--nous-chat-width)',
-          'z-index': 'var(--nous-chat-z-index)',
+          zIndex: 'var(--nous-chat-z-index)',
         }"
         v-if="isOpen"
       >
@@ -75,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, provide } from "vue";
+import {ref, computed, onMounted, provide, shallowRef} from 'vue';
 import NousHome from "./NousHome.vue";
 import NousConversation from "./NousConversation.vue";
 
@@ -140,7 +140,7 @@ provide("nousChatProps", props);
 
 // State variables
 const isOpen = ref(false);
-const activeComponent = ref();
+const activeComponent = shallowRef();
 
 onMounted(() => {
   const userSessionId = localStorage.getItem("nous-user-session-id");

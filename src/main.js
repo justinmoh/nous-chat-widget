@@ -4,19 +4,31 @@ import style from './style.css?inline'
 
 const Nous = {
     init(config) {
-        // Inject style
-        if (!document.getElementById('nous-chat-style')) {
-            const styleElement = document.createElement('style')
-            styleElement.id = 'nous-chat-style'
-            styleElement.textContent = style
-            document.head.appendChild(styleElement)
-        }
-
-        // Create and mount Vue app
+        // Create container
         const container = document.createElement('div')
         document.body.appendChild(container)
+
+        // Create shadow root
+        const shadow = container.attachShadow({ mode: 'open' })
+
+        // Create mount point for Vue app
+        const mountPoint = document.createElement('div')
+        shadow.appendChild(mountPoint)
+
+        // Inject styles into shadow DOM
+        const styleElement = document.createElement('style')
+        styleElement.textContent = style
+        shadow.appendChild(styleElement)
+
+        // Create and mount Vue app inside shadow DOM
         const app = createApp(NousChat, config)
-        app.mount(container)
+        app.mount(mountPoint)
+
+        return {
+            container,
+            shadow,
+            app
+        }
     }
 }
 

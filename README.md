@@ -79,8 +79,8 @@ const props = defineProps({
     default: "SpecialInitPayLoadDoNotTouch",
   },
   zIndex: {
-    type: String,
-    default: "1000",
+    type: Number,
+    default: 1000,
   },
   asrChunk: {
     type: Number,
@@ -104,7 +104,7 @@ To initialize,
 <script>
   Nous.init({
     color: "#1076EE",
-    zIndex: "1000",
+    zIndex: 1000,
     webhookUrl:
       "https://search-api-v2.nous.mesolitica.com/chat/happytohelp@mesolitica.com/2968",
     title: "Bot",
