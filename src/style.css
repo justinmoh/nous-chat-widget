@@ -38,3 +38,101 @@
         opacity: 0;
     }
 }
+
+
+/* Message text */
+.ns-text-sm {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+}
+
+/* Bot message */
+.ns-bg-gray-100.ns-rounded-xl.ns-rounded-bl-sm.ns-p-3.ns-max-w-\[100\%\] {
+    background-color: #f5f5f5 !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    border-radius: 12px !important;
+    margin-bottom: 8px !important;
+}
+
+/* Timestamp */
+.ns-text-xs.ns-text-gray-500.ns-mt-1 {
+    font-size: 12px !important;
+    color: #666 !important;
+}
+
+/* User message */
+.ns-w-8.ns-h-8.ns-rounded-full.ns-bg-white.ns-flex.ns-items-center.ns-justify-center.ns-flex-shrink-0.ns-mt-3.ns-mb-4 {
+    background-color: #1076EE !important;
+    color: white !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+}
+
+/* Header */
+.ns-flex.ns-items-center.ns-h-14.ns-w-full.ns-px-5 {
+    padding: 16px !important;
+    background-color: #1076EE !important;
+    color: white !important;
+}
+
+/* Message container */
+.ns-flex-1.ns-overflow-y-auto.ns-p-4.ns-relative.no-scrollbar {
+    padding: 16px !important;
+    height: calc(100% - 120px) !important;
+}
+
+/* Input area */
+.ns-p-4.ns-text-gray-400.ns-text-sm.ns-text-center.ns-w-full {
+    font-size: 15px !important;
+    padding: 12px !important;
+}
+
+
+/* Main chat container */
+.ns-fixed.ns-bg-white.ns-right-5.ns-bottom-\[5\.5rem\].ns-rounded-2xl.ns-shadow-chatbox.ns-overflow-hidden {
+    width: 380px !important;
+    height: 600px !important;
+    border-radius: 16px !important;
+}
+
+/* Toggle button (chat icon) */
+.ns-fixed.ns-bottom-5.ns-right-5.ns-w-12.ns-h-12 {
+    width: 50px !important;
+    height: 40px !important;
+    border-radius: 30px !important;
+}
+
+/* Header container */
+.ns-flex.ns-items-center.ns-h-14.ns-w-full.ns-px-5,
+.ns-flex.ns-items-center.ns-h-14.ns-w-full.ns-px-5 {
+    height: 50px !important; /* Increased from default */
+    padding: 0 20px !important;
+    background-color: #1076EE !important;
+}
+
+/* Header title */
+.ns-text-white.ns-font-semibold.ns-ml-2.ns-grow,
+h1.ns-text-white.ns-font-semibold.ns-ml-2.ns-grow {
+    font-size: 19px !important;
+    font-weight: 600 !important;
+}
+
+/* Back button and icons in header */
+.ns-flex.ns-items-center.ns-gap-3 svg {
+    width: 24px !important; /* Increased icon size */
+    height: 24px !important;
+}
+
+/* Start New Session button */
+.ns-p-2.ns-w-full.ns-text-left.ns-text-sm.ns-font-medium {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+    background-color: #f5f5f5 !important;
+    border-radius: 6px !important;
+    margin: 6px 0 !important;
+    color: #333 !important;
+}
