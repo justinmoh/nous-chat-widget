@@ -6,10 +6,11 @@ function wrapIIFE() {
   return {
     name: 'wrap-iife',
     generateBundle(options, bundle) {
-      const fileName = 'nous-chat.js';
-      const file = bundle[fileName];
-      if (file) {
-        file.code = createIIFEWrapper(file.code);
+      // Look for the generated file with hash in the bundle
+      const bundleFile = Object.keys(bundle)
+          .find(filename => filename.startsWith('nous-chat') && filename.endsWith('.js'));
+      if (bundleFile && bundle[bundleFile]) {
+        bundle[bundleFile].code = createIIFEWrapper(bundle[bundleFile].code);
       }
     },
   };
@@ -23,7 +24,7 @@ export default defineConfig({
     lib: {
       entry: 'src/main.js',
       name: 'Nous',
-      fileName: () => 'nous-chat.js',
+      fileName: (format) => 'nous-chat.[hash].js',
       formats: ['iife'],
     },
     rollupOptions: {
