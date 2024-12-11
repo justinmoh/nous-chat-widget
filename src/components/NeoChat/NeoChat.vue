@@ -1,59 +1,37 @@
 <template>
   <div class="nous-chat-widget ns-absolute" :style="widgetStyle">
 
-    <img class="ns-fixed ns-bottom-5 ns-right-5 ns-w-[112px] ns-h-auto"
-        :src="NaioChatbotRobotBg"/>
-        <!--src="https://mesolitica-nous.s3.ap-southeast-1.amazonaws.com/Images/WhatsApp_Image_2024-12-06_at_11.10.43_e72f4e04-removebg-preview.png"/>-->
+    <div role="button" @click="toggleChat">
+      <img class="ns-fixed ns-bottom-[23px] ns-right-[38px] ns-w-[64px] ns-h-auto"
+          :src="NaioChatbotRobotBg"/>
 
-    <!-- chatbot toggle -->
-    <div
-        class="ns-fixed ns-bottom-5 ns-right-5 ns-w-12 ns-h-12 ns-flex ns-items-center ns-justify-center ns-rounded-full ns-shadow-lg ns-transition-all hover:ns-scale-110"
-        role="button"
-        @click="toggleChat"
-        :style="{ backgroundColor: 'var(--nous-chat-color)', zIndex: 'var(--nous-chat-z-index)' }"
-    >
-      <!-- open icon -->
-      <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-          v-if="isOpen"
-      >
-        <g id="tabler-icon-chevron-down__tabler-icon-chevron-down">
-          <path
-              id="tabler-icon-chevron-down__Vector"
-              stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m6 9 6 6 6-6"
-          />
-        </g>
-      </svg>
-      <!-- close icon -->
-      <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
-          fill="none"
-          viewBox="0 0 18 18"
-          v-else
-      >
-        <g id="frame__Frame" clip-path="url(#frame__clip0_1212_3584)">
-          <path
-              id="frame__Vector"
-              fill="#fff"
-              d="M13.5 2.25a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9.957l-3.572 2.143a.75.75 0 0 1-1.13-.558l-.005-.085v-1.5H4.5a3 3 0 0 1-2.996-2.85l-.004-.15v-6a3 3 0 0 1 3-3h9ZM10.5 9H6a.75.75 0 0 0 0 1.5h4.5a.75.75 0 1 0 0-1.5ZM12 6H6a.75.75 0 0 0 0 1.5h6A.75.75 0 1 0 12 6Z"
-          />
-        </g>
-        <defs>
-          <clipPath id="frame__clip0_1212_3584">
-            <path fill="#fff" d="M0 0h18v18H0z"/>
-          </clipPath>
-        </defs>
-      </svg>
+      <!-- chatbot toggle -->
+      <div
+          class="ns-fixed ns-bottom-5 ns-right-5 ns-w-12 ns-h-12 ns-flex ns-items-center ns-justify-center ns-rounded-full ns-shadow-lg ns-transition-all hover:ns-scale-110"
+          :style="{ backgroundColor: 'var(--nous-chat-color)', zIndex: 'var(--nous-chat-z-index)' }">
+        <!-- open icon -->
+        <svg v-if="isOpen"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+            viewBox="0 0 24 24">
+          <g id="tabler-icon-chevron-down__tabler-icon-chevron-down">
+            <path id="tabler-icon-chevron-down__Vector" stroke="#fff" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>
+          </g>
+        </svg>
+        <!-- close icon -->
+        <svg v-else xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none"
+            viewBox="0 0 18 18">
+          <g id="frame__Frame" clip-path="url(#frame__clip0_1212_3584)">
+            <path id="frame__Vector" fill="#fff"
+                d="M13.5 2.25a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9.957l-3.572 2.143a.75.75 0 0 1-1.13-.558l-.005-.085v-1.5H4.5a3 3 0 0 1-2.996-2.85l-.004-.15v-6a3 3 0 0 1 3-3h9ZM10.5 9H6a.75.75 0 0 0 0 1.5h4.5a.75.75 0 1 0 0-1.5ZM12 6H6a.75.75 0 0 0 0 1.5h6A.75.75 0 1 0 12 6Z"/>
+          </g>
+          <defs>
+            <clipPath id="frame__clip0_1212_3584">
+              <path fill="#fff" d="M0 0h18v18H0z"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
     </div>
 
     <!-- chatbot body container -->
@@ -83,7 +61,7 @@
 import {computed, onMounted, provide, ref, shallowRef} from 'vue';
 import NousConversation from './../NousConversation.vue';
 import NousHome from './../NousHome.vue';
-import NaioChatbotRobotBg from '@/assets/naio-chatbot-robot-bg.png?url';
+import NaioChatbotRobotBg from '@/assets/naio-chatbot-robot-bg-trimmed.png';
 
 // Props
 const props = defineProps({
